@@ -33,7 +33,7 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
-            <Button Margin="5" Background="#4D4962" Content="Obavjeti" FontWeight="Bold" Foreground="White">
+            <Button x:Name="btnObavjesti" Margin="5" Background="#4D4962" Content="Obavjeti" FontWeight="Bold" Foreground="White">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -41,7 +41,7 @@
                 </Button.Resources>
             </Button>
             
-            <Button Grid.Row="1" Margin="5" Background="#4D4962" Content="Predmeti" FontWeight="Bold" Foreground="White">
+            <Button x:Name="btnPredmeti" Grid.Row="1" Margin="5" Background="#4D4962" Content="Predmeti" FontWeight="Bold" Foreground="White">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -49,7 +49,8 @@
                 </Button.Resources>
             </Button>
 
-            <Button Grid.Row="2" Margin="5" Background="#4D4962" Content="Dodaj" FontWeight="Bold" Foreground="White">
+            <Button x:Name="btnDodaj" Grid.Row="2" Margin="5" Background="#4D4962" Content="Dodaj" FontWeight="Bold" Foreground="White"
+                    Visibility="Hidden">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
