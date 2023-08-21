@@ -1,0 +1,69 @@
+﻿<Window x:Class="PraProjekt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PraProjekt"
+        mc:Ignorable="d" Height="450" Width="700">
+ 
+    <Grid Background="#55516B">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.ColumnSpan="2">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#35363a"></SolidColorBrush>
+            </Rectangle.Fill>
+        </Rectangle>    
+            
+        <Image  Source="/Images/Algebra logo.png" Stretch="Fill" Margin="10, 10, 50, 10"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <Button Margin="5" Background="#4D4962" Content="Obavjeti" FontWeight="Bold" Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+            <Button Grid.Row="1" Margin="5" Background="#4D4962" Content="Predmeti" FontWeight="Bold" Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button Grid.Row="2" Margin="5" Background="#4D4962" Content="Dodaj" FontWeight="Bold" Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+        </Grid>
+            
+        <ScrollViewer Grid.Row="1" Grid.Column="1">
+            <StackPanel x:Name="StackPanelContent"/>
+        </ScrollViewer> 
+        
+            
+            
+    </Grid>
+</Window>
