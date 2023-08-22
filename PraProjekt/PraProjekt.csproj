@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\Algebra logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
