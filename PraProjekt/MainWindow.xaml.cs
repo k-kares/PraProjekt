@@ -20,6 +20,8 @@ namespace PraProjekt
     /// </summary>
     public partial class MainWindow : Window
     {
+        //prati podatke u kojem je tabu
+        private Button? lastPressedButton;
         public MainWindow()
         {
             InitializeComponent();
