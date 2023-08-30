@@ -69,5 +69,15 @@ namespace PraProjekt.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DefaultPlayerPic {
+            get {
+                object obj = ResourceManager.GetObject("DefaultPlayerPic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

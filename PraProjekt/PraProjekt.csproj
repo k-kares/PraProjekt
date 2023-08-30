@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Images\Algebra logo.png" />
+    <None Remove="Images\DefaultPlayerPic.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
     <Resource Include="Images\Algebra logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\DefaultPlayerPic.jpg" />
   </ItemGroup>
 
   <ItemGroup>
