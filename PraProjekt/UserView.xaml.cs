@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Utilities;
 
 namespace PraProjekt
 {
@@ -20,9 +22,21 @@ namespace PraProjekt
     /// </summary>
     public partial class UserView : UserControl
     {
+        User OvajUser = new User();
         public UserView()
         {
             InitializeComponent();
+        }
+
+        public void SetUser(User user)
+        {
+            OvajUser = user;
+            SetName();
+        }
+
+        public void SetName()
+        {
+            lblName.Content = OvajUser.Name;
         }
     }
 }

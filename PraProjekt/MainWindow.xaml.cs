@@ -28,6 +28,21 @@ namespace PraProjekt
         {
             LoginUsera();
             InitializeComponent();
+            CheckIfAdmin();
+            DrawUser();
+        }
+
+        private void DrawUser()
+        {
+            uvUser.SetUser(OvajUser);
+        }
+
+        private void CheckIfAdmin()
+        {
+            if (OvajUser.IsAdmin)
+            {
+                btnDodaj.Visibility = Visibility.Visible;
+            }
         }
 
         private void LoginUsera()
