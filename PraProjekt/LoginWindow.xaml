@@ -34,11 +34,11 @@
             </Label>
 
             <TextBox Grid.Column="1" Grid.Row="1" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left"
-                   FontWeight="Bold" Margin="10" Foreground="White" Width="150" x:Name="tbMail">
+                   FontWeight="Bold" Margin="10" Foreground="Black" Width="150" x:Name="tbMail">
             </TextBox>
 
             <PasswordBox Grid.Column="1" Grid.Row="2" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left"
-                   FontWeight="Bold" Margin="10" Foreground="White" Width="150" x:Name="pbPass">
+                   FontWeight="Bold" Margin="10" Foreground="Black" Width="150" x:Name="pbPass">
             </PasswordBox>
         </Grid>
 

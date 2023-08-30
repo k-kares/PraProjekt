@@ -34,6 +34,10 @@ namespace PraProjekt
         {
             LoginWindow login = new LoginWindow(this);
             login.ShowDialog();
+            if (OvajUser is null)
+            {
+                this.Close();
+            }
         }
     }
 }
