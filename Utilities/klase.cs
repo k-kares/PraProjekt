@@ -26,7 +26,13 @@ namespace Utilities
     public class Kolegij
     {
         public string Name { get; set; }
-        public string UserName { get; set; }
+        public string UsersName { get; set; }
+    }
 
+    public class Obavijest
+    {
+        public Kolegij ImeKolegija { get; set; }
+        public string Title { get; set; }
+        public string Message { get; set; }
     }
 }
