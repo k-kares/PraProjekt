@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Utilities;
 
 namespace PraProjekt
 {
@@ -22,9 +23,17 @@ namespace PraProjekt
     {
         //prati podatke u kojem je tabu
         private Button? lastPressedButton;
+        public User OvajUser { get; set; }
         public MainWindow()
         {
+            LoginUsera();
             InitializeComponent();
+        }
+
+        private void LoginUsera()
+        {
+            LoginWindow login = new LoginWindow(this);
+            login.ShowDialog();
         }
     }
 }

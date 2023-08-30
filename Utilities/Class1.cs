@@ -3,6 +3,7 @@
     public class FileUtilities
     {
         private const char SEPERATOR = '|';
+
         public static List<string> LoadFileData(string PATH)
         {
             List<string> fileData = new List<string>();

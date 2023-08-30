@@ -13,6 +13,14 @@ namespace Utilities
         public string Email { get; set; }
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
+        public User() { }
+        public User(string name, string email, string password, bool admin) 
+        {
+            this.Name = name;
+            this.Email = email;
+            this.Password = password;
+            this.IsAdmin = admin;
+        }
     }
 
     public class Kolegij
