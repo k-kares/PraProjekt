@@ -83,6 +83,7 @@ namespace PraProjekt
             lastPressedButton = but;
 
             ClearSpace();
+            //treba metoda koja stavlja button koji ce onClick stavit novu obavijest
             PutContentOnScreen(obavijesti);
         }
 
