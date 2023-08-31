@@ -113,18 +113,20 @@ namespace PraProjekt
         {
             foreach (var kolegij in kolegiji)
             {
-                MakeKolegij();
+                MakeKolegij(kolegij);
             }
         }
 
         private void MakeObavijest(Obavijest obavijest)
         {
-            //napravi user controlu obavijest i stavi je u stackpanel
+            ObavijestView ov = new ObavijestView(obavijest);
+            StackPanelContent.Children.Add(ov);
         }
 
-        private void MakeKolegij()
+        private void MakeKolegij(Kolegij kolegij)
         {
-            //napravi user controlu kolegij i stavi je u stackpanel
+            KolegijView kv = new KolegijView(kolegij);
+            StackPanelContent.Children.Add(kv);
         }
 
         private void BtnDodaj_click(object sender, RoutedEventArgs e)
