@@ -5,21 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PraProjekt"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="550">
+             d:DesignHeight="80" d:DesignWidth="550" MaxHeight="80" MaxWidth="550">
+    
     <Grid Background="Transparent">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="2px" Grid.ColumnSpan="2" Background="White"/>
-        
-        <Viewbox Stretch="Uniform" StretchDirection="Both" HorizontalAlignment="left">
-            <Label x:Name="lblImeKolegija" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        </Viewbox>
-        
-        <Viewbox Stretch="Uniform" StretchDirection="Both" HorizontalAlignment="Right" Grid.Column="1">
-            <Label x:Name="lblImeProfesora" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
-        </Viewbox>
-             
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Gray" Background="White" BorderThickness="2px" Grid.RowSpan="3" CornerRadius="10"></Border>
+
+        <Label Margin="0" Padding="10 0" Height="34" FontWeight="Bold" FontSize="24" x:Name="lblImeKolegija">lblImeKolegija</Label>
+
+        <Label Margin="0" Padding="10 0" Height="26" FontWeight="Bold" FontSize="16" x:Name="lblImeProfesora" Grid.Row="1">lblImeProfesora</Label>
     </Grid>
 </UserControl>

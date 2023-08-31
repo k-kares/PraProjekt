@@ -21,7 +21,9 @@ namespace PraProjekt
     public partial class LoginWindow : Window
     {
         MainWindow MainW;
-        private const string User_path = "users.txt";
+
+        //gleda runtime direktorij, znaci praprojekt/bin/debug itd. tijekom rada u visual studiu
+        public const string User_path = "Podaci/korisnici.txt";
         private List<User> users = new List<User>();
 
         public LoginWindow(MainWindow mw)
@@ -29,6 +31,7 @@ namespace PraProjekt
             MainW = mw;
             InitializeComponent();
             LoadUsers();
+            tbMail.Focus();
         }
 
         private void LoadUsers()
@@ -85,6 +88,14 @@ namespace PraProjekt
                 }
             }
             return false;
+        }
+
+        private void OnEnterLogin(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Return)
+            {
+                btnOkClick(sender, e);
+            }
         }
     }
 }

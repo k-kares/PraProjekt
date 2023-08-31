@@ -63,7 +63,7 @@
             
         </Grid>
             
-        <ScrollViewer Grid.Row="1" Grid.Column="1">
+        <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="StackPanelContent"/>
         </ScrollViewer> 
  

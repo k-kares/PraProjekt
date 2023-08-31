@@ -37,6 +37,14 @@ namespace PraProjekt
         public void SetName()
         {
             lblName.Content = OvajUser.Name;
+            if(OvajUser.IsAdmin)
+            {
+                lblAdminStatus.Content = "Administrator";
+            }
+            else
+            {
+                lblAdminStatus.Content = "Predavač";
+            }
         }
     }
 }
