@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PraProjekt"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="300" Width="400">
+        Height="300" Width="400" MinHeight="250" MinWidth="300">
     <Grid Background="#55516B">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
@@ -23,7 +23,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-
+            <Image  Source="/Images/Algebra logo.png" Stretch="Uniform" Margin="10, 10" MaxHeight="50" MaxWidth="50" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="2"/>
             <Label Grid.Column="0" Grid.Row="1" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Right"
                    FontWeight="Bold" Margin="10" Foreground="White">
                 E-mail:
@@ -46,9 +46,9 @@
                Foreground="White" FontSize="10">
         </Label>
 
-        <Button x:Name="btnOk" Margin="5" Background="#4D4962" Content="Ok" FontWeight="Bold" 
+        <Button x:Name="btnOk" Margin="5" Background="#4D4962" Content="Ok" FontWeight="Bold" FontSize="12"
                 Foreground="White" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
-                Padding="20, 10" Click="btnOkClick">
+                 Click="btnOkClick" Height="35" Width="60">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20"/>

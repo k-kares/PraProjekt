@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Utilities/users.txt
+/users.txt
+/PraProjekt/users.txt
