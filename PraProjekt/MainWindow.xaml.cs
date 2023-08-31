@@ -21,15 +21,32 @@ namespace PraProjekt
     /// </summary>
     public partial class MainWindow : Window
     {
-        //prati podatke u kojem je tabu
-        private Button? lastPressedButton;
+        private Button? lastPressedButton; //prati podatke u kojem je tabu
         public User OvajUser { get; set; }
+
+        private const string Kolegiji_Path = "kolegiji.txt";
+        private const string Obavijesti_Path = "obavijesti.txt";
+
+        List<Obavijest> obavijesti = new List<Obavijest>();
+        List<Kolegij> kolegiji = new List<Kolegij>();
         public MainWindow()
         {
             LoginUsera();
             InitializeComponent();
+            LoadObavijestiData();
+            LoadKolegijiData();
             CheckIfAdmin();
             DrawUser();
+        }
+
+        private void LoadKolegijiData()
+        {
+            //loadaj kolegiji iz datoteke
+        }
+
+        private void LoadObavijestiData()
+        {
+            //loadaj obavijesti iz datoteke
         }
 
         private void DrawUser()
@@ -53,6 +70,114 @@ namespace PraProjekt
             {
                 this.Close();
             }
+        }
+
+        private void BtnObavijest_click(object sender, RoutedEventArgs e)
+        {
+            Button but = sender as Button;
+            if (IsActiveTab(but)) 
+            {
+                return;
+            }
+            lastPressedButton = but;
+
+            ClearSpace();
+            MakeButtonAddObavijest();
+            
+            PutContentOnScreen(obavijesti);
+        }
+
+        private void MakeButtonAddObavijest()
+        {
+            Button but = new Button() {
+                Name = "AddObavijest",
+                Content = "Napravi novu obavijest",
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(Colors.White),
+                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(77,73, 98)),
+            };
+            but.Click += But_Click;
+            StackPanelContent.Children.Add(but);
+        }
+
+        private void But_Click(object sender, RoutedEventArgs e)
+        {
+            //napravi novu obavijest (moze bit novi window il nes)
+        }
+
+        private void BtnPredmeti_click(object sender, RoutedEventArgs e)
+        {
+            Button but = sender as Button;
+            if (IsActiveTab(but))
+            {
+                return;
+            }
+            lastPressedButton = but;
+
+            ClearSpace();
+            PutContentOnScreen(kolegiji);
+        }
+
+
+        private void PutContentOnScreen(List<Obavijest> obavijesti)
+        {
+            foreach (var obavijest in obavijesti)
+            {
+                MakeObavijest(obavijest);
+            }
+        }
+
+        private void PutContentOnScreen(List<Kolegij> kolegiji)
+        {
+            foreach (var kolegij in kolegiji)
+            {
+                MakeKolegij(kolegij);
+            }
+        }
+
+        private void MakeObavijest(Obavijest obavijest)
+        {
+            ObavijestView ov = new ObavijestView(obavijest);
+            StackPanelContent.Children.Add(ov);
+        }
+
+        private void MakeKolegij(Kolegij kolegij)
+        {
+            KolegijView kv = new KolegijView(kolegij);
+            StackPanelContent.Children.Add(kv);
+        }
+
+        private void BtnDodaj_click(object sender, RoutedEventArgs e)
+        {
+            Button but = sender as Button;
+            if (IsActiveTab(but))
+            {
+                return;
+            }
+            lastPressedButton = but;
+            ClearSpace();
+        }
+        private void ClearSpace()
+        {
+            StackPanelContent.Children.Clear();
+        }
+        private bool IsActiveTab(Button? but)
+        {
+            if (lastPressedButton == but)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //save data iz liste kolegija u kolegiji.txt
+            //save data iz liste obavijesti u obavijesti.txt
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="PraProjekt.KolegijView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PraProjekt"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="550">
+    <Grid Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="2px" Grid.ColumnSpan="2" Background="White"/>
+        
+        <Viewbox Stretch="Uniform" StretchDirection="Both" HorizontalAlignment="left">
+            <Label x:Name="lblImeKolegija" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+        </Viewbox>
+        
+        <Viewbox Stretch="Uniform" StretchDirection="Both" HorizontalAlignment="Right" Grid.Column="1">
+            <Label x:Name="lblImeProfesora" VerticalAlignment="Center" HorizontalAlignment="Left"></Label>
+        </Viewbox>
+             
+    </Grid>
+</UserControl>
