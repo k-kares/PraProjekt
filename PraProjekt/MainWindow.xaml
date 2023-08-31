@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PraProjekt"
-        mc:Ignorable="d" Height="450" Width="700" MinHeight="350" MinWidth="350">
+        mc:Ignorable="d" Height="450" Width="700" MinHeight="350" MinWidth="350" Closing="Window_Closing">
  
     <Grid Background="#55516B">
         <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="btnObavijesti" Margin="5" Background="#4D4962" Content="Obavijesti" FontWeight="Bold" Foreground="White" Height="50" Width="115">
+            <Button x:Name="btnObavijesti" Margin="5" Background="#4D4962" Content="Obavijesti" FontWeight="Bold" Foreground="White" Height="50" Width="115" Click="BtnObavijest_click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -44,7 +44,7 @@
                 </Button.Resources>
             </Button>
 
-            <Button x:Name="btnPredmeti" Grid.Row="1" Margin="5" Background="#4D4962" Content="Predmeti" FontWeight="Bold" Foreground="White" Height="50" Width="115">
+            <Button x:Name="btnPredmeti" Grid.Row="1" Margin="5" Background="#4D4962" Content="Predmeti" FontWeight="Bold" Foreground="White" Height="50" Width="115" Click="BtnPredmeti_click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -53,7 +53,7 @@
             </Button>
 
             <Button x:Name="btnDodaj" Grid.Row="2" Margin="5" Background="#4D4962" Content="Dodaj" FontWeight="Bold" Foreground="White"
-                    Visibility="Hidden" Height="50" Width="115">
+                    Visibility="Hidden" Height="50" Width="115" Click="BtnDodaj_click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
