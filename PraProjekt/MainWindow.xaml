@@ -4,16 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PraProjekt"
-        mc:Ignorable="d" Height="450" Width="700">
+        mc:Ignorable="d" Height="450" Width="700" MinHeight="350" MinWidth="350">
  
     <Grid Background="#55516B">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="130"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
@@ -23,28 +23,28 @@
             </Rectangle.Fill>
         </Rectangle>    
             
-        <Image  Source="/Images/Algebra logo.png" Stretch="Fill" Margin="10, 10, 50, 10"/>
+        <Image  Source="/Images/Algebra logo.png" Stretch="Uniform"  Margin="10, 10" />
 
         <local:UserView Grid.Column="1" HorizontalAlignment="Right" Width="200" Margin="5" x:Name="uvUser">
         </local:UserView>
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="btnObavjesti" Margin="5" Background="#4D4962" Content="Obavjeti" FontWeight="Bold" Foreground="White">
+            <Button x:Name="btnObavijesti" Margin="5" Background="#4D4962" Content="Obavijesti" FontWeight="Bold" Foreground="White" Height="50" Width="115">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            
-            <Button x:Name="btnPredmeti" Grid.Row="1" Margin="5" Background="#4D4962" Content="Predmeti" FontWeight="Bold" Foreground="White">
+
+            <Button x:Name="btnPredmeti" Grid.Row="1" Margin="5" Background="#4D4962" Content="Predmeti" FontWeight="Bold" Foreground="White" Height="50" Width="115">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
@@ -53,7 +53,7 @@
             </Button>
 
             <Button x:Name="btnDodaj" Grid.Row="2" Margin="5" Background="#4D4962" Content="Dodaj" FontWeight="Bold" Foreground="White"
-                    Visibility="Hidden">
+                    Visibility="Hidden" Height="50" Width="115">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>

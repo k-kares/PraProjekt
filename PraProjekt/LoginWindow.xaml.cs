@@ -64,7 +64,7 @@ namespace PraProjekt
 
         private void WrongValues()
         {
-            lblResult.Content = "Krivi mail ili password";
+            lblResult.Content = "Korisnik ne postoji ili greška pri upisu!";
         }
 
         private bool Check()
