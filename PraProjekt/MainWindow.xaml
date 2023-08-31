@@ -66,8 +66,6 @@
         <ScrollViewer Grid.Row="1" Grid.Column="1">
             <StackPanel x:Name="StackPanelContent"/>
         </ScrollViewer> 
-        
-            
-            
+ 
     </Grid>
 </Window>

@@ -33,8 +33,15 @@ namespace PraProjekt
 
         private void LoadUsers()
         {
-            List<string> loaded = Utilities.FileUtilities.LoadFileData(User_path);
-            MakeIntoUsers(loaded);
+            try
+            {
+                List<string> loaded = Utilities.FileUtilities.LoadFileData(User_path);
+                MakeIntoUsers(loaded);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void MakeIntoUsers(List<string> loaded)

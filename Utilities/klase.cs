@@ -31,7 +31,7 @@ namespace Utilities
 
     public class Obavijest
     {
-        public Kolegij ImeKolegija { get; set; }
+        public string ImeKolegija { get; set; }
         public string Title { get; set; }
         public string Message { get; set; }
     }

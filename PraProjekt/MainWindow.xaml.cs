@@ -21,8 +21,7 @@ namespace PraProjekt
     /// </summary>
     public partial class MainWindow : Window
     {
-        //prati podatke u kojem je tabu
-        private Button? lastPressedButton;
+        private Button? lastPressedButton; //prati podatke u kojem je tabu
         public User OvajUser { get; set; }
 
         private const string Kolegiji_Path = "kolegiji.txt";
@@ -83,8 +82,28 @@ namespace PraProjekt
             lastPressedButton = but;
 
             ClearSpace();
-            //treba metoda koja stavlja button koji ce onClick stavit novu obavijest
+            MakeButtonAddObavijest();
+            
             PutContentOnScreen(obavijesti);
+        }
+
+        private void MakeButtonAddObavijest()
+        {
+            Button but = new Button() {
+                Name = "AddObavijest",
+                Content = "Napravi novu obavijest",
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(Colors.White),
+                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(77,73, 98)),
+            };
+            but.Click += But_Click;
+            StackPanelContent.Children.Add(but);
+        }
+
+        private void But_Click(object sender, RoutedEventArgs e)
+        {
+            //napravi novu obavijest (moze bit novi window il nes)
         }
 
         private void BtnPredmeti_click(object sender, RoutedEventArgs e)

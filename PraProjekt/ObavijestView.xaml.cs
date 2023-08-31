@@ -31,7 +31,7 @@ namespace PraProjekt
 
         private void SetInfo()
         {
-            lblImeKolegija.Content = ovaObavijest.ImeKolegija.UsersName;
+            lblImeKolegija.Content = ovaObavijest.ImeKolegija;
             lblTitle.Content = ovaObavijest.Title;
             tbContent.Text = ovaObavijest.Message;
         }
