@@ -5,24 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PraProjekt"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="550" MouseDoubleClick="UserControl_MouseDoubleClick">
+             d:DesignHeight="150" d:DesignWidth="550" MaxHeight="150" MaxWidth="550" MouseDoubleClick="UserControl_MouseDoubleClick">
+    
+    
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*" MinHeight="48" MaxHeight="100"/>
         </Grid.RowDefinitions>
 
         <Border BorderBrush="Gray" Background="White" BorderThickness="2px" Grid.RowSpan="3" CornerRadius="10"></Border>
 
-        <Label Margin="0" Padding="10 0" x:Name="lblImeKolegija"></Label>
-        
-        <Viewbox Grid.Row="1" HorizontalAlignment="Left">
-            <Label Margin="0" Padding="10 0" x:Name="lblTitle" Grid.Row="1">t</Label>
-        </Viewbox>
+        <Label Margin="0" Padding="10 0" Height="20" FontWeight="Bold" FontSize="16" x:Name="lblImeKolegija">lblImeKolegija</Label>
 
-        <ScrollViewer Grid.Row="2">
-            <TextBlock x:Name="tbContent"/>
+        <Label Margin="0" Padding="10 0" Height="20" FontWeight="Bold" FontSize="12" x:Name="lblTitle" Grid.Row="1">lblTitle</Label>
+
+
+        <ScrollViewer x:Name="Scroll" Grid.Row="2" CanContentScroll="True" VerticalScrollBarVisibility="Auto" MaxHeight="48">
+            <TextBlock x:Name="tbContent" Padding="25 0" FontSize="12" TextWrapping="Wrap">tbContent</TextBlock>
         </ScrollViewer>
     </Grid>
 </UserControl>
+    
