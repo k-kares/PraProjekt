@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Utilities;
 
 namespace PraProjekt
 {
@@ -20,9 +21,24 @@ namespace PraProjekt
     /// </summary>
     public partial class ObavijestView : UserControl
     {
-        public ObavijestView()
+        Obavijest ovaObavijest = new Obavijest();
+        public ObavijestView(Obavijest obavijest)
         {
+            ovaObavijest = obavijest;
             InitializeComponent();
+            SetInfo();
+        }
+
+        private void SetInfo()
+        {
+            lblImeKolegija.Content = ovaObavijest.ImeKolegija.UsersName;
+            lblTitle.Content = ovaObavijest.Title;
+            tbContent.Text = ovaObavijest.Message;
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //napravi novi window koji ce show-at obavijest
         }
     }
 }

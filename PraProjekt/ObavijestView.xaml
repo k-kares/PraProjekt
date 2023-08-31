@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PraProjekt"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="550">
+             d:DesignHeight="150" d:DesignWidth="550" MouseDoubleClick="UserControl_MouseDoubleClick">
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,10 +15,10 @@
 
         <Border BorderBrush="Gray" Background="White" BorderThickness="2px" Grid.RowSpan="3" CornerRadius="10"></Border>
 
-        <Label Margin="0" Padding="10 0" x:Name="lblImeKolegija">vava</Label>
+        <Label Margin="0" Padding="10 0" x:Name="lblImeKolegija"></Label>
         
         <Viewbox Grid.Row="1" HorizontalAlignment="Left">
-            <Label Margin="0" Padding="10 0" x:Name="lblTitle" Grid.Row="1">baba</Label>
+            <Label Margin="0" Padding="10 0" x:Name="lblTitle" Grid.Row="1">t</Label>
         </Viewbox>
 
         <ScrollViewer Grid.Row="2">
