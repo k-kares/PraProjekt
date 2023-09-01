@@ -32,6 +32,9 @@ namespace PraProjekt
 
         public List<Obavijest> obavijesti = new List<Obavijest>();
         public List<Kolegij> kolegiji = new List<Kolegij>();
+
+        public int lastKolegijId;
+        public int lastObavijestId;
         public MainWindow()
         {
             LoginUsera();
@@ -48,6 +51,10 @@ namespace PraProjekt
             try
             {
                 kolegiji = Utilities.FileUtilities.LoadFileDataforKolegiji(Kolegiji_Path);
+                if (kolegiji.Any())
+                {
+                    lastKolegijId = int.Parse(kolegiji.LastOrDefault().ID); 
+                }
             }
             catch (Exception)
             {
@@ -62,6 +69,10 @@ namespace PraProjekt
             try
             {
                 obavijesti = Utilities.FileUtilities.LoadFileDataforObavijest(Obavijesti_Path);
+                if (obavijesti.Any())
+                {
+                    lastObavijestId = int.Parse(obavijesti.LastOrDefault().ID); 
+                }
             }
             catch (Exception)
             {
