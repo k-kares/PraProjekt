@@ -123,6 +123,10 @@ namespace PraProjekt
             };
             but.Click += But_Click;
             StackPanelContent.Children.Add(but);
+            if (!OvajUser.IsAdmin)
+            {
+                but.Visibility = Visibility.Hidden;
+            }
         }
 
         private void MakeButtonAddKolegij()
@@ -138,6 +142,10 @@ namespace PraProjekt
             };
             but.Click += But_Click;
             StackPanelContent.Children.Add(but);
+            if (!OvajUser.IsAdmin)
+            {
+                but.Visibility = Visibility.Hidden;
+            }
         }
 
         private async void But_Click(object sender, RoutedEventArgs e)
@@ -200,7 +208,7 @@ namespace PraProjekt
 
         private void MakeObavijest(Obavijest obavijest)
         {
-            ObavijestView ov = new ObavijestView(obavijest);
+            ObavijestView ov = new ObavijestView(obavijest, OvajUser.IsAdmin);
             StackPanelContent.Children.Add(ov);
         }
 
@@ -236,10 +244,5 @@ namespace PraProjekt
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //save data iz liste kolegija u kolegiji.txt
-            //save data iz liste obavijesti u obavijesti.txt
-        }
     }
 }

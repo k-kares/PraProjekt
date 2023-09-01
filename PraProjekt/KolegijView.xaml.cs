@@ -34,5 +34,11 @@ namespace PraProjekt
             lblImeKolegija.Content = ovajKolegij.Name;
             lblImeProfesora.Content = ovajKolegij.UsersName;
         }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+                UrediKolegij window = new UrediKolegij(ovajKolegij);
+                window.ShowDialog();
+        }
     }
 }
