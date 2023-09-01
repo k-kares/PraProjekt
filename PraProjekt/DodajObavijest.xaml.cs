@@ -22,11 +22,13 @@ namespace PraProjekt
     public partial class DodajObavijest : Window
     {
         MainWindow MainW;
+        private User OvajUser;
         private List<Kolegij> kolegiji { get; set; }
         public DodajObavijest(MainWindow mw)
         {
             MainW = mw;
             InitializeComponent();
+            OvajUser = mw.OvajUser;
             kolegiji = mw.kolegiji;
             LoadKolegij();
         }
@@ -36,7 +38,14 @@ namespace PraProjekt
             List<string> listaKolegija = new List<string>();
             foreach(var kolegij in kolegiji)
             {
-                listaKolegija.Add(kolegij.Name);
+                if (OvajUser.IsAdmin)
+                {
+                    listaKolegija.Add(kolegij.Name);
+                }
+                else if(kolegij.UsersName == OvajUser.Name)
+                {
+                    listaKolegija.Add(kolegij.Name);
+                }
             }
             cbKolegij.ItemsSource = listaKolegija;
             cbKolegij.SelectedIndex = 0;
@@ -45,10 +54,7 @@ namespace PraProjekt
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
             String obavijest = $"{cbKolegij.SelectedItem.ToString()}|{tbNazivObavijesti.Text}|{tbObavijest.Text}" + Environment.NewLine;
-
-            /*ne znam kako pristupiti pathu bez da pretvorim mw.kolegiji_path u public property umjesto const
-            string obavijestPath = mw.Obavijesti_Path;*/
-            File.AppendAllText("Podaci/obavijesti.txt", obavijest);
+            File.AppendAllText(konstante.Obavijesti_Path, obavijest);
             this.Close();
         }
 

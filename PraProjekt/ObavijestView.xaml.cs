@@ -22,7 +22,8 @@ namespace PraProjekt
     public partial class ObavijestView : UserControl
     {
         Obavijest ovaObavijest = new Obavijest();
-        public ObavijestView(Obavijest obavijest)
+        private bool admin;
+        public ObavijestView(Obavijest obavijest, bool isAdmin)
         {
             ovaObavijest = obavijest;
             InitializeComponent();
@@ -38,7 +39,8 @@ namespace PraProjekt
 
         private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //napravi novi window koji ce show-at obavijest
+            UrediObavijest window = new UrediObavijest(admin, ovaObavijest);
+            window.ShowDialog();
         }
     }
 }

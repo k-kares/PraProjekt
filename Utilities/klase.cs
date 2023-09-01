@@ -27,6 +27,7 @@ namespace Utilities
     {
         public string Name { get; set; }
         public string UsersName { get; set; }
+        public string ID { get; set; }
     }
 
     public class Obavijest
@@ -34,5 +35,6 @@ namespace Utilities
         public string ImeKolegija { get; set; }
         public string Title { get; set; }
         public string Message { get; set; }
+        public string ID { get; set; }
     }
 }
