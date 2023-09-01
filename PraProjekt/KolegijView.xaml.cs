@@ -22,10 +22,10 @@ namespace PraProjekt
     public partial class KolegijView : UserControl
     {
         Kolegij ovajKolegij = new Kolegij();
-        bool isAdmin = false;
-        public KolegijView(Kolegij kolegij, bool isAdmin_)
+        User trenutniUser = new User();
+        public KolegijView(Kolegij kolegij, User vlasnikObavijesti)
         {
-            isAdmin = isAdmin_;
+            trenutniUser = vlasnikObavijesti;
             ovajKolegij = kolegij;
             InitializeComponent();
             SetInfo();
@@ -39,11 +39,8 @@ namespace PraProjekt
 
         private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (isAdmin)
-            {
-                UrediKolegij window = new UrediKolegij(ovajKolegij);
-                window.ShowDialog(); 
-            }
+            UrediKolegij window = new UrediKolegij(ovajKolegij, trenutniUser);
+            window.ShowDialog(); 
         }
     }
 }
