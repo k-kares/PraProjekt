@@ -40,7 +40,8 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
-            String kolegij = Environment.NewLine + $"{tbNazivKolegija.Text}|{tbPredavačKolegija.Text}";
+            String kolegij = $"{tbNazivKolegija.Text}|{tbPredavačKolegija.Text}|{MainW.lastKolegijId++}";
+            File.AppendAllText(konstante.Kolegiji_Path, Environment.NewLine);
             File.AppendAllText(konstante.Kolegiji_Path, kolegij);
             this.Close();
         }

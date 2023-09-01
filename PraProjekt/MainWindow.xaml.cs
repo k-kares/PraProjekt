@@ -32,6 +32,12 @@ namespace PraProjekt
 
         public List<Obavijest> obavijesti = new List<Obavijest>();
         public List<Kolegij> kolegiji = new List<Kolegij>();
+
+        public int lastKolegijId;
+        public int lastObavijestId;
+
+        //provjerava da li je nesto removano, ako je window.closing treba sve iz lista stavit na txt file-ove
+        public bool wasSomethingRemoved = false;
         public MainWindow()
         {
             LoginUsera();
@@ -48,6 +54,10 @@ namespace PraProjekt
             try
             {
                 kolegiji = Utilities.FileUtilities.LoadFileDataforKolegiji(Kolegiji_Path);
+                if (kolegiji.Any())
+                {
+                    lastKolegijId = int.Parse(kolegiji.LastOrDefault().ID); 
+                }
             }
             catch (Exception)
             {
@@ -62,6 +72,10 @@ namespace PraProjekt
             try
             {
                 obavijesti = Utilities.FileUtilities.LoadFileDataforObavijest(Obavijesti_Path);
+                if (obavijesti.Any())
+                {
+                    lastObavijestId = int.Parse(obavijesti.LastOrDefault().ID); 
+                }
             }
             catch (Exception)
             {
@@ -123,10 +137,6 @@ namespace PraProjekt
             };
             but.Click += But_Click;
             StackPanelContent.Children.Add(but);
-            if (!OvajUser.IsAdmin)
-            {
-                but.Visibility = Visibility.Hidden;
-            }
         }
 
         private void MakeButtonAddKolegij()
@@ -202,7 +212,10 @@ namespace PraProjekt
         {
             foreach (var kolegij in kolegiji)
             {
-                MakeKolegij(kolegij);
+                if (kolegij.UsersName == OvajUser.Name || OvajUser.IsAdmin)
+                {
+                    MakeKolegij(kolegij); 
+                }
             }
         }
 
@@ -214,7 +227,7 @@ namespace PraProjekt
 
         private void MakeKolegij(Kolegij kolegij)
         {
-            KolegijView kv = new KolegijView(kolegij);
+            KolegijView kv = new KolegijView(kolegij, OvajUser.IsAdmin);
             StackPanelContent.Children.Add(kv);
         }
 

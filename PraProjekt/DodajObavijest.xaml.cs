@@ -53,7 +53,8 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
-            String obavijest = $"{cbKolegij.SelectedItem.ToString()}|{tbNazivObavijesti.Text}|{tbObavijest.Text}" + Environment.NewLine;
+            String obavijest = $"{cbKolegij.SelectedItem.ToString()}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{MainW.lastObavijestId++}";
+            File.AppendAllText(konstante.Kolegiji_Path, Environment.NewLine);
             File.AppendAllText(konstante.Obavijesti_Path, obavijest);
             this.Close();
         }
