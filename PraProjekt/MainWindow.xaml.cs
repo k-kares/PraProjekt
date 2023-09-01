@@ -134,10 +134,6 @@ namespace PraProjekt
             };
             but.Click += But_Click;
             StackPanelContent.Children.Add(but);
-            if (!OvajUser.IsAdmin)
-            {
-                but.Visibility = Visibility.Hidden;
-            }
         }
 
         private void MakeButtonAddKolegij()
