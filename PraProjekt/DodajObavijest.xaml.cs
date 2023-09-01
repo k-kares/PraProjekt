@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -53,8 +54,14 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
-            String obavijest = $"{cbKolegij.SelectedItem.ToString()}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{MainW.lastObavijestId++}";
-            File.AppendAllText(konstante.Kolegiji_Path, Environment.NewLine);
+            DateTime datumI = DateTime.ParseExact(dpDatumIsteka.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            string datumIsteka = datumI.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            DateTime datumO = DateTime.ParseExact(DateTime.Today.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            string datumObjave = datumO.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            String obavijest = $"{cbKolegij.SelectedItem.ToString()}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{datumObjave}|{datumIsteka}|{++MainW.lastObavijestId}";
+            File.AppendAllText(konstante.Obavijesti_Path, Environment.NewLine);
             File.AppendAllText(konstante.Obavijesti_Path, obavijest);
             this.Close();
         }

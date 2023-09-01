@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="6*"/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid>
@@ -30,7 +31,7 @@
             </Label>
             <ComboBox x:Name="cbKolegij" Grid.Column="1" Grid.Row="0" Margin="12" Loaded="cbKolegij_Loaded">
             </ComboBox>
-            
+
             <Label Grid.Column="0" Grid.Row="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"
                    FontWeight="Bold" Margin="10" Foreground="White">
                 Naslov:
@@ -58,5 +59,12 @@
                 </Style>
             </Button.Resources>
         </Button>
+        <Label FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left"
+                   FontWeight="Bold" Foreground="White" Grid.Row="1" Margin="175,0,0,0">
+            Datum isteka:
+        </Label>
+        <DatePicker x:Name="dpDatumIsteka" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,188,0">
+            
+        </DatePicker>
     </Grid>
 </Window>
