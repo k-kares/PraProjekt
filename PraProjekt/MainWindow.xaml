@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PraProjekt"
-        mc:Ignorable="d" Height="450" Width="700" MinHeight="350" MinWidth="350" Closing="Window_Closing">
+        mc:Ignorable="d" Height="450" Width="700" MinHeight="350" MinWidth="350">
  
     <Grid Background="#55516B">
         <Grid.RowDefinitions>
@@ -52,8 +52,7 @@
                 </Button.Resources>
             </Button>
 
-            <Button x:Name="btnUredi" Grid.Row="2" Margin="5" Background="#4D4962" Content="Uredi" FontWeight="Bold" Foreground="White"
-                    Visibility="Hidden" Height="50" Width="115" Click="BtnUredi_click">
+            <Button x:Name="btnKorisnici" Grid.Row="2" Margin="5" Background="#4D4962" Content="Korisnici" FontWeight="Bold" Foreground="White" Height="50" Width="115" Click="btnKorisnici_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
