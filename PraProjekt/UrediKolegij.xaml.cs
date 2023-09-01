@@ -24,11 +24,45 @@ namespace PraProjekt
         public List<Kolegij> kolegiji = new List<Kolegij>();
         public Kolegij trenutniKolegij;
         public List<string> lines = new List<string>();
-        public UrediKolegij(Kolegij ovajKolegij)
+        public User trenutniUser = new User();
+
+        public UrediKolegij(Kolegij ovajKolegij, User ovajUser)
         {
             trenutniKolegij = ovajKolegij;
+            trenutniUser = ovajUser;
             InitializeComponent();
             SetInfo(trenutniKolegij);
+            DisabletbPredavacKolegija();
+            HidebtnUredi();
+            HidebtnObrisi();
+        }
+
+        private void DisabletbPredavacKolegija()
+        {
+            if(!trenutniUser.IsAdmin)
+            {
+                tbPredavačKolegija.Focusable = false;
+                tbPredavačKolegija.IsReadOnly = true;
+                tbPredavačKolegija.Background = Brushes.Gray;
+            }
+        }
+
+        private void HidebtnObrisi()
+        {
+            if (!trenutniUser.IsAdmin && trenutniUser.Name != trenutniKolegij.UsersName)
+            {
+                btnObrisi.Visibility = Visibility.Hidden;
+                return;
+            }
+        }
+
+        private void HidebtnUredi()
+        {
+            if (!trenutniUser.IsAdmin && trenutniUser.Name != trenutniKolegij.UsersName)
+            {
+                btnObrisi.Visibility = Visibility.Hidden;
+                return;
+            }
         }
 
         private void SetInfo(Kolegij ovajKolegij)
@@ -61,8 +95,22 @@ namespace PraProjekt
             }
             catch (Exception)
             {
-                MessageBox.Show("Greška pri učitavanju obavijesti!");
+                MessageBox.Show("Greška pri učitavanju Kolegija!");
             }
+        }
+
+        private void btnObrisi_Click(object sender, RoutedEventArgs e)
+        {
+            LoadKolegijiData();
+            foreach (var kolegij in kolegiji)
+            {
+                if (kolegij.ID != trenutniKolegij.ID)
+                    lines.Add($"{kolegij.Name}|{kolegij.UsersName}|{kolegij.ID}");
+            }
+            File.Delete(konstante.Kolegiji_Path);
+            File.AppendAllLines(konstante.Kolegiji_Path, lines);
+
+            this.Close();
         }
     }
 }

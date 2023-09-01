@@ -47,9 +47,18 @@
                Foreground="White" FontSize="10">
         </Label>
 
-        <Button x:Name="btnUredi" Margin="5" Background="#4D4962" Content="Uredi" FontWeight="Bold" FontSize="12"
-                Foreground="White" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <Button x:Name="btnUredi" Margin="130,0,0,0" Background="#4D4962" Content="Uredi" FontWeight="Bold" FontSize="12"
+                Foreground="White" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"
                  Click="btnUredi_Click" Height="35" Width="60">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="btnObrisi" Margin="220,0,0,0" Background="#AA4962" Content="Obrisi" FontWeight="Bold" FontSize="12"
+                Foreground="Black" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"
+                 Height="35" Width="60" Click="btnObrisi_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20"/>
