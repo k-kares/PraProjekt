@@ -52,8 +52,8 @@
                 </Button.Resources>
             </Button>
 
-            <Button x:Name="btnDodaj" Grid.Row="2" Margin="5" Background="#4D4962" Content="Dodaj" FontWeight="Bold" Foreground="White"
-                    Visibility="Hidden" Height="50" Width="115" Click="BtnDodaj_click">
+            <Button x:Name="btnUredi" Grid.Row="2" Margin="5" Background="#4D4962" Content="Uredi" FontWeight="Bold" Foreground="White"
+                    Visibility="Hidden" Height="50" Width="115" Click="BtnUredi_click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
