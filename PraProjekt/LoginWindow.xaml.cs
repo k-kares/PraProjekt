@@ -55,7 +55,7 @@ namespace PraProjekt
                 string email = loaded[i++];
                 string password = loaded[i++];
                 bool admin = bool.Parse(loaded[i++]);
-                i++; //skipa id
+                //i++; skipa id
                 User newUser = new User(ime, email, password, admin);
                 users.Add(newUser);
             }
