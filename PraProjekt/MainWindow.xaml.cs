@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PraProjekt.Zadnji_tab;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -94,7 +95,7 @@ namespace PraProjekt
         {
             if (OvajUser.IsAdmin)
             {
-                btnDodaj.Visibility = Visibility.Visible;
+                btnUredi.Visibility = Visibility.Visible;
             }
         }
 
@@ -172,13 +173,34 @@ namespace PraProjekt
                 LoadKolegijiData();
             }
 
-            if (senderButton.Name == "AddObavijest")
+            else if (senderButton.Name == "AddObavijest")
             {
                 Window window = new DodajObavijest(this);
                 window.ShowDialog();
                 ClearSpace();
                 MakeButtonAddObavijest();
                 LoadObavijestiData();
+            }
+
+            else if (senderButton.Name == "AddUser")
+            {
+                Window window = new DodajUser();
+                window.ShowDialog();
+            }
+            else if(senderButton.Name == "RemoveUser")
+            {
+                Window window = new Remove_User();
+                window.ShowDialog();
+            }
+            else if (senderButton.Name == "RemoveKolegij")
+            {
+                Window window = new RemoveKolegij();
+                window.ShowDialog();
+            }
+            else if (senderButton.Name == "RemoveObavijest")
+            {
+                Window window = new RemoveObavijest();
+                window.ShowDialog();
             }
         }
 
@@ -231,7 +253,7 @@ namespace PraProjekt
             StackPanelContent.Children.Add(kv);
         }
 
-        private void BtnDodaj_click(object sender, RoutedEventArgs e)
+        private void BtnUredi_click(object sender, RoutedEventArgs e)
         {
             Button but = sender as Button;
             if (IsActiveTab(but))
@@ -240,7 +262,89 @@ namespace PraProjekt
             }
             lastPressedButton = but;
             ClearSpace();
+
+            LoadajButtoneZaUredi();
         }
+
+        private void LoadajButtoneZaUredi()
+        {
+            MakeButtonAddUser();
+            MakeButtonRemoveUser();
+            MakeButtonRemoveKolegij();
+            MakeButtonRemoveObavijest();
+        }
+
+        private void MakeButtonRemoveObavijest()
+        {
+            wasSomethingRemoved = true;
+            Button but = new Button()
+            {
+                Name = "RemoveObavijest",
+                Content = "Makni Obavijest",
+                Height = 50,
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(Colors.White),
+                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+            };
+            but.Click += But_Click;
+            StackPanelContent.Children.Add(but);
+            //remova obavijest
+        }
+
+        private void MakeButtonRemoveKolegij()
+        {
+            wasSomethingRemoved = true;
+            Button but = new Button()
+            {
+                Name = "RemoveKolegij",
+                Content = "Makni Kolegij",
+                Height = 50,
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(Colors.White),
+                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+            };
+            but.Click += But_Click;
+            StackPanelContent.Children.Add(but);
+            //remova kolegij
+        }
+
+        private void MakeButtonRemoveUser()
+        {
+            wasSomethingRemoved = true;
+            Button but = new Button()
+            {
+                Name = "RemoveUser",
+                Content = "Makni User-a",
+                Height = 50,
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(Colors.White),
+                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+            };
+            but.Click += But_Click;
+            StackPanelContent.Children.Add(but);
+            //remova usera
+        }
+
+        private void MakeButtonAddUser()
+        {
+            Button but = new Button()
+            {
+                Name = "AddUser",
+                Content = "Napravi novi User",
+                Height = 50,
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(Colors.White),
+                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+            };
+            but.Click += But_Click;
+            StackPanelContent.Children.Add(but);
+            //adda usera
+        }
+
         private void ClearSpace()
         {
             StackPanelContent.Children.Clear();
@@ -257,5 +361,12 @@ namespace PraProjekt
             }
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (wasSomethingRemoved)
+            {
+                //treba podatke iz lista ponovo unjet u txt
+            }
+        }
     }
 }
