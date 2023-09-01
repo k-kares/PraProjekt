@@ -27,8 +27,8 @@ namespace PraProjekt
 
         //gleda runtime direktorij, znaci praprojekt/bin/debug itd. tijekom rada u visual studiu
         //treba nacin da posaljem path u DodajKolegij i DodajObavijest 
-        public const string Kolegiji_Path = "Podaci/kolegiji.txt";
-        public const string Obavijesti_Path = "Podaci/obavijesti.txt";
+        public const string Kolegiji_Path = "../../../Podaci/kolegiji.txt";
+        public const string Obavijesti_Path = "../../../Podaci/obavijesti.txt";
 
         public List<Obavijest> obavijesti = new List<Obavijest>();
         public List<Kolegij> kolegiji = new List<Kolegij>();

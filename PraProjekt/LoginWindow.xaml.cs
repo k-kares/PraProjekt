@@ -23,7 +23,7 @@ namespace PraProjekt
         MainWindow MainW;
 
         //gleda runtime direktorij, znaci praprojekt/bin/debug itd. tijekom rada u visual studiu
-        public const string User_path = "Podaci/korisnici.txt";
+        public const string User_path = "../../../Podaci/korisnici.txt";
         private List<User> users = new List<User>();
 
         public LoginWindow(MainWindow mw)

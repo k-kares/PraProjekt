@@ -8,7 +8,7 @@ namespace Utilities
 {
     public static class konstante
     {
-        public const string Kolegiji_Path = "Podaci/kolegiji.txt";
-        public const string Obavijesti_Path = "Podaci/obavijesti.txt";
+        public const string Kolegiji_Path = "../../../Podaci/kolegiji.txt";
+        public const string Obavijesti_Path = "../../../Podaci/obavijesti.txt";
     }
 }

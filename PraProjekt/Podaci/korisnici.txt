@@ -1,0 +1,4 @@
+admin|admin|admin|true
+Pero|pero@gmail.com|pero|false
+Matija|matija@gmail.com|matija|false
+Davor|davor@gmail.com|davor|false
