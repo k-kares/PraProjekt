@@ -1,4 +1,5 @@
-Matematika 1|Matija|1
+KolMatematika 1|Matija|1
 Autentikacijski sustavi i baze podataka|Davor|2
-Kolegij random|admin|3
-Matematika 2|Pero|3
+Kolegij 3|admin|3
+Kolegij 4|pero|5
+Kolegij 5|pero|6
