@@ -35,6 +35,9 @@ namespace PraProjekt
 
         public int lastKolegijId;
         public int lastObavijestId;
+
+        //provjerava da li je nesto removano, ako je window.closing treba sve iz lista stavit na txt file-ove
+        public bool wasSomethingRemoved = false;
         public MainWindow()
         {
             LoginUsera();
@@ -209,7 +212,10 @@ namespace PraProjekt
         {
             foreach (var kolegij in kolegiji)
             {
-                MakeKolegij(kolegij);
+                if (kolegij.UsersName == OvajUser.Name || OvajUser.IsAdmin)
+                {
+                    MakeKolegij(kolegij); 
+                }
             }
         }
 
