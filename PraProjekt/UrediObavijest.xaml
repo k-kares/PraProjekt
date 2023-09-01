@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="6*"/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid>
@@ -28,7 +29,7 @@
                    FontWeight="Bold" Margin="10" Foreground="White">
                 Kolegij:
             </Label>
-            <Label x:Name="lbKolegij" Grid.Column="1" Grid.Row="0" Margin="12">
+            <Label x:Name="lbKolegij" Grid.Column="1" Grid.Row="0" Margin="12" Foreground="White">
             </Label>
 
             <Label Grid.Column="0" Grid.Row="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"
@@ -36,7 +37,7 @@
                 Naslov:
             </Label>
             <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
-            <TextBox x:Name="tbObavijest"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"
+                <TextBox x:Name="tbObavijest"  FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"
                    FontWeight="Bold" Margin="10" Foreground="Black" Width="500" Height="250" MinWidth="350" MinHeight="150">
                 </TextBox>
             </ScrollViewer>
@@ -50,9 +51,8 @@
         <Label Grid.Row="1" x:Name="lblResult" VerticalAlignment="Center" HorizontalAlignment="Center"
                Foreground="White" FontSize="10">
         </Label>
-
-        <Button x:Name="btnUredi" Margin="5" Background="#4D4962" Content="Uredi" FontWeight="Bold" FontSize="12"
-                Foreground="White" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <Button x:Name="btnUredi" Margin="220,0,0,0" Background="#4D4962" Content="Uredi" FontWeight="Bold" FontSize="12"
+                Foreground="White" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"
                  Height="35" Width="60" Click="btnUredi_Click">
             <Button.Resources>
                 <Style TargetType="Border">
@@ -60,5 +60,21 @@
                 </Style>
             </Button.Resources>
         </Button>
+        <Button x:Name="btnObrisi" Margin="330,0,0,0" Background="#AA4962" Content="Obrisi" FontWeight="Bold" FontSize="12"
+                Foreground="Black" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"
+                 Height="35" Width="60" Click="btnObrisi_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Label FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left"
+                   FontWeight="Bold" Foreground="White" Grid.Row="1" Margin="175,0,0,0">
+            Datum isteka:
+        </Label>
+        <DatePicker x:Name="dpDatumIsteka" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,188,0">
+
+        </DatePicker>
     </Grid>
 </Window>

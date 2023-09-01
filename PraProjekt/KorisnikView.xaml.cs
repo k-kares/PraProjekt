@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,30 +18,35 @@ using Utilities;
 namespace PraProjekt
 {
     /// <summary>
-    /// Interaction logic for KolegijView.xaml
+    /// Interaction logic for UserView.xaml
     /// </summary>
-    public partial class KolegijView : UserControl
+    public partial class KorisnikView : UserControl
     {
-        Kolegij ovajKolegij = new Kolegij();
         User trenutniUser = new User();
-        public KolegijView(Kolegij kolegij, User vlasnikObavijesti)
+        public KorisnikView(User ovajUser)
         {
-            trenutniUser = vlasnikObavijesti;
-            ovajKolegij = kolegij;
+            trenutniUser=ovajUser;
             InitializeComponent();
             SetInfo();
         }
 
-        private void SetInfo()
+        public void SetInfo()
         {
-            lblImeKolegija.Content = ovajKolegij.Name;
-            lblImeProfesora.Content = ovajKolegij.UsersName;
+            lblName.Content = trenutniUser.Name;
+            if (trenutniUser.IsAdmin)
+            {
+                lblAdminStatus.Content = "Administrator";
+            }
+            else
+            {
+                lblAdminStatus.Content = "Predavač";
+            }
         }
 
         private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            UrediKolegij window = new UrediKolegij(ovajKolegij, trenutniUser);
-            window.ShowDialog(); 
+            UrediKorisnika window = new UrediKorisnika(trenutniUser);
+            window.ShowDialog();
         }
     }
 }

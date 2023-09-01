@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,11 +26,35 @@ namespace PraProjekt
         public List<Obavijest> obavijesti = new List<Obavijest>();
         public Obavijest trenutnaObavijest;
         public List<string> lines = new List<string>();
-        public UrediObavijest(bool isAdmin, Obavijest ovaObavijest)
+        public User trenutniUser = new User();
+
+
+        public UrediObavijest(Obavijest ovaObavijest, User ovajUser)
         {
             trenutnaObavijest=ovaObavijest;
+            trenutniUser=ovajUser;
             InitializeComponent();
             SetInfo(trenutnaObavijest);
+            HidebtnUredi();
+            HidebtnObrisi();
+        }
+
+        private void HidebtnObrisi()
+        {
+            if (!trenutniUser.IsAdmin && trenutniUser.Name!=trenutnaObavijest.ImePredavaca)
+            {
+                btnObrisi.Visibility = Visibility.Hidden; 
+                return;
+            }
+        }
+
+        private void HidebtnUredi()
+        {
+            if (!trenutniUser.IsAdmin && trenutniUser.Name != trenutnaObavijest.ImePredavaca)
+            {
+                btnObrisi.Visibility = Visibility.Hidden;
+                return;
+            }
         }
 
         private void SetInfo(Obavijest ovaObavijest)
@@ -37,6 +62,7 @@ namespace PraProjekt
             tbNazivObavijesti.Text = ovaObavijest.Title;
             tbObavijest.Text = ovaObavijest.Message;
             lbKolegij.Content = ovaObavijest.ImeKolegija;
+            dpDatumIsteka.SelectedDate = DateTime.ParseExact(ovaObavijest.DatumIsteka, "dd/MM/yyyy", null);
         }
 
         private void btnUredi_Click(object sender, RoutedEventArgs e)
@@ -44,10 +70,13 @@ namespace PraProjekt
             LoadObavijestiData();
             foreach (var obavijest in obavijesti)
             {
-                if(obavijest.ID != trenutnaObavijest.ID)
-                    lines.Add($"{obavijest.ImeKolegija}|{obavijest.Title}|{obavijest.Message}|{obavijest.ID}");
+                DateTime dt = DateTime.ParseExact(dpDatumIsteka.SelectedDate.ToString(), "dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                string noviDatum = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                if (obavijest.ID != trenutnaObavijest.ID)
+                    lines.Add($"{obavijest.ImeKolegija}|{obavijest.Title}|{obavijest.Message}|{obavijest.ImePredavaca}|{obavijest.DatumObjave}|{obavijest.DatumIsteka}|{obavijest.ID}");
                 else
-                    lines.Add($"{lbKolegij.Content}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{obavijest.ID}");
+                    lines.Add($"{lbKolegij.Content}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{obavijest.ImePredavaca}|{obavijest.DatumObjave}|{noviDatum}|{obavijest.ID}");
             }
             File.Delete(konstante.Obavijesti_Path);
             File.AppendAllLines(konstante.Obavijesti_Path, lines);
@@ -67,5 +96,19 @@ namespace PraProjekt
             }
         }
 
+        private void btnObrisi_Click(object sender, RoutedEventArgs e)
+        {
+            LoadObavijestiData();
+            foreach (var obavijest in obavijesti)
+            {
+                if (obavijest.ID != trenutnaObavijest.ID)
+                    lines.Add($"{obavijest.ImeKolegija}|{obavijest.Title}|{obavijest.Message}|{obavijest.ImePredavaca}|{obavijest.ID}");
+            }
+
+            File.Delete(konstante.Obavijesti_Path);
+            File.AppendAllLines(konstante.Obavijesti_Path, lines);
+
+            this.Close();
+        }
     }
 }

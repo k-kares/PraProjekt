@@ -26,16 +26,13 @@ namespace PraProjekt
         private Button? lastPressedButton; //prati podatke u kojem je tabu
         public User OvajUser { get; set; }
 
-        //gleda runtime direktorij, znaci praprojekt/bin/debug itd. tijekom rada u visual studiu
-        //treba nacin da posaljem path u DodajKolegij i DodajObavijest 
-        public const string Kolegiji_Path = "../../../Podaci/kolegiji.txt";
-        public const string Obavijesti_Path = "../../../Podaci/obavijesti.txt";
-
         public List<Obavijest> obavijesti = new List<Obavijest>();
         public List<Kolegij> kolegiji = new List<Kolegij>();
+        public List<User> korisnici = new List<User>();
 
         public int lastKolegijId;
         public int lastObavijestId;
+        public int lastKorisnikId;
 
         //provjerava da li je nesto removano, ako je window.closing treba sve iz lista stavit na txt file-ove
         public bool wasSomethingRemoved = false;
@@ -46,7 +43,7 @@ namespace PraProjekt
             LoadKolegijiData();
             LoadObavijestiData();
             ClearSpace();
-            CheckIfAdmin();
+            HidebtnKorisnici();
             DrawUser();
         }
 
@@ -54,7 +51,7 @@ namespace PraProjekt
         {
             try
             {
-                kolegiji = Utilities.FileUtilities.LoadFileDataforKolegiji(Kolegiji_Path);
+                kolegiji = Utilities.FileUtilities.LoadFileDataforKolegiji(konstante.Kolegiji_Path);
                 if (kolegiji.Any())
                 {
                     lastKolegijId = int.Parse(kolegiji.LastOrDefault().ID); 
@@ -72,7 +69,7 @@ namespace PraProjekt
         {
             try
             {
-                obavijesti = Utilities.FileUtilities.LoadFileDataforObavijest(Obavijesti_Path);
+                obavijesti = Utilities.FileUtilities.LoadFileDataforObavijest(konstante.Obavijesti_Path);
                 if (obavijesti.Any())
                 {
                     lastObavijestId = int.Parse(obavijesti.LastOrDefault().ID); 
@@ -85,17 +82,34 @@ namespace PraProjekt
             
             PutContentOnScreen(obavijesti);
         }
+        private void LoadKorisniciData()
+        {
+            try
+            {
+                korisnici = Utilities.FileUtilities.LoadFileDataforKorisnici(konstante.Korisnici_Path);
+                if (korisnici.Any())
+                {
+                    lastKorisnikId = int.Parse(korisnici.LastOrDefault().ID);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Greška pri učitavanju korisnika!");
+            }
+
+            PutContentOnScreen(obavijesti);
+        }
 
         private void DrawUser()
         {
             uvUser.SetUser(OvajUser);
         }
 
-        private void CheckIfAdmin()
+        private void HidebtnKorisnici()
         {
-            if (OvajUser.IsAdmin)
+            if (!OvajUser.IsAdmin)
             {
-                btnUredi.Visibility = Visibility.Visible;
+                btnKorisnici.Visibility = Visibility.Hidden;
             }
         }
 
@@ -161,10 +175,10 @@ namespace PraProjekt
 
         private async void But_Click(object sender, RoutedEventArgs e)
         {
-            //napravi novu obavijest ili kolegij
+            //napravi novu obavijest, kolegij ili korisnika
 
             Button senderButton = (Button)sender;
-            if(senderButton.Name == "AddKolegij")
+            if (senderButton.Name == "AddKolegij")
             {
                 Window window = new DodajKolegij(this);
                 window.ShowDialog();
@@ -184,23 +198,11 @@ namespace PraProjekt
 
             else if (senderButton.Name == "AddUser")
             {
-                Window window = new DodajUser();
+                Window window = new DodajKorisnika(this);
                 window.ShowDialog();
-            }
-            else if(senderButton.Name == "RemoveUser")
-            {
-                Window window = new Remove_User();
-                window.ShowDialog();
-            }
-            else if (senderButton.Name == "RemoveKolegij")
-            {
-                Window window = new RemoveKolegij();
-                window.ShowDialog();
-            }
-            else if (senderButton.Name == "RemoveObavijest")
-            {
-                Window window = new RemoveObavijest();
-                window.ShowDialog();
+                ClearSpace();
+                MakeButtonAddUser();
+                LoadKorisniciData();
             }
         }
 
@@ -221,11 +223,28 @@ namespace PraProjekt
             PutContentOnScreen(kolegiji);
         }
 
+        private void btnKorisnici_Click(object sender, RoutedEventArgs e)
+        {
+            Button but = sender as Button;
+            if (IsActiveTab(but))
+            {
+                return;
+            }
+            lastPressedButton = but;
+
+            LoadKorisniciData();
+
+            ClearSpace();
+            MakeButtonAddUser();
+
+            PutContentOnScreen(korisnici);
+        }
 
         private void PutContentOnScreen(List<Obavijest> obavijesti)
         {
             foreach (var obavijest in obavijesti)
             {
+                if(DateTime.Parse(obavijest.DatumIsteka) > DateTime.Today)
                 MakeObavijest(obavijest);
             }
         }
@@ -240,92 +259,30 @@ namespace PraProjekt
                 }
             }
         }
+        private void PutContentOnScreen(List<User> korisnici)
+        {
+            foreach (var korisnik in korisnici)
+            {
+                MakeKorisnik(korisnik);
+            }
+        }
+
+        private void MakeKorisnik(User korisnik)
+        {
+            KorisnikView uv = new KorisnikView(korisnik);
+            StackPanelContent.Children.Add(uv);
+        }
 
         private void MakeObavijest(Obavijest obavijest)
         {
-            ObavijestView ov = new ObavijestView(obavijest, OvajUser.IsAdmin);
+            ObavijestView ov = new ObavijestView(obavijest, OvajUser);
             StackPanelContent.Children.Add(ov);
         }
 
         private void MakeKolegij(Kolegij kolegij)
         {
-            KolegijView kv = new KolegijView(kolegij, OvajUser.IsAdmin);
+            KolegijView kv = new KolegijView(kolegij, OvajUser);
             StackPanelContent.Children.Add(kv);
-        }
-
-        private void BtnUredi_click(object sender, RoutedEventArgs e)
-        {
-            Button but = sender as Button;
-            if (IsActiveTab(but))
-            {
-                return;
-            }
-            lastPressedButton = but;
-            ClearSpace();
-
-            LoadajButtoneZaUredi();
-        }
-
-        private void LoadajButtoneZaUredi()
-        {
-            MakeButtonAddUser();
-            MakeButtonRemoveUser();
-            MakeButtonRemoveKolegij();
-            MakeButtonRemoveObavijest();
-        }
-
-        private void MakeButtonRemoveObavijest()
-        {
-            wasSomethingRemoved = true;
-            Button but = new Button()
-            {
-                Name = "RemoveObavijest",
-                Content = "Makni Obavijest",
-                Height = 50,
-                FontWeight = FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.White),
-                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
-                BorderBrush = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
-            };
-            but.Click += But_Click;
-            StackPanelContent.Children.Add(but);
-            //remova obavijest
-        }
-
-        private void MakeButtonRemoveKolegij()
-        {
-            wasSomethingRemoved = true;
-            Button but = new Button()
-            {
-                Name = "RemoveKolegij",
-                Content = "Makni Kolegij",
-                Height = 50,
-                FontWeight = FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.White),
-                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
-                BorderBrush = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
-            };
-            but.Click += But_Click;
-            StackPanelContent.Children.Add(but);
-            //remova kolegij
-        }
-
-        private void MakeButtonRemoveUser()
-        {
-            wasSomethingRemoved = true;
-            Button but = new Button()
-            {
-                Name = "RemoveUser",
-                Content = "Makni User-a",
-                Height = 50,
-                FontWeight = FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.White),
-                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
-                BorderBrush = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
-            };
-            but.Click += But_Click;
-            StackPanelContent.Children.Add(but);
-            //remova usera
         }
 
         private void MakeButtonAddUser()
@@ -361,12 +318,5 @@ namespace PraProjekt
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (wasSomethingRemoved)
-            {
-                //treba podatke iz lista ponovo unjet u txt
-            }
-        }
     }
 }

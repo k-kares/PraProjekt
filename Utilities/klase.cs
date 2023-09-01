@@ -13,6 +13,7 @@ namespace Utilities
         public string Email { get; set; }
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
+        public string ID { get; set; }
         public User() { }
         public User(string name, string email, string password, bool admin) 
         {
@@ -36,5 +37,8 @@ namespace Utilities
         public string Title { get; set; }
         public string Message { get; set; }
         public string ID { get; set; }
+        public string ImePredavaca { get; set; }
+        public string DatumObjave { get; set; }
+        public string DatumIsteka { get; set; }
     }
 }

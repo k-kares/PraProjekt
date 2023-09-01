@@ -23,10 +23,11 @@ namespace PraProjekt
     {
         Obavijest ovaObavijest = new Obavijest();
         private bool admin;
-        public ObavijestView(Obavijest obavijest, bool isAdmin)
+        private User trenutniUser;
+        public ObavijestView(Obavijest obavijest, User ovajUser)
         {
             ovaObavijest = obavijest;
-            admin = isAdmin;
+            trenutniUser = ovajUser;
             InitializeComponent();
             SetInfo();
         }
@@ -40,11 +41,8 @@ namespace PraProjekt
 
         private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (admin)
-            {
-                UrediObavijest window = new UrediObavijest(admin, ovaObavijest);
-                window.ShowDialog(); 
-            }
+            UrediObavijest window = new UrediObavijest(ovaObavijest, trenutniUser);
+            window.ShowDialog(); 
         }
     }
 }
