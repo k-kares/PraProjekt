@@ -225,7 +225,7 @@ namespace PraProjekt
 
         private void MakeKolegij(Kolegij kolegij)
         {
-            KolegijView kv = new KolegijView(kolegij);
+            KolegijView kv = new KolegijView(kolegij, OvajUser.IsAdmin);
             StackPanelContent.Children.Add(kv);
         }
 
