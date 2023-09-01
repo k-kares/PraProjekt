@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PraProjekt.Zadnji_tab;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -183,19 +184,23 @@ namespace PraProjekt
 
             else if (senderButton.Name == "AddUser")
             {
-                
+                Window window = new DodajUser();
+                window.ShowDialog();
             }
             else if(senderButton.Name == "RemoveUser")
             {
-
+                Window window = new Remove_User();
+                window.ShowDialog();
             }
             else if (senderButton.Name == "RemoveKolegij")
             {
-
+                Window window = new RemoveKolegij();
+                window.ShowDialog();
             }
             else if (senderButton.Name == "RemoveObavijest")
             {
-
+                Window window = new RemoveObavijest();
+                window.ShowDialog();
             }
         }
 
@@ -356,5 +361,12 @@ namespace PraProjekt
             }
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (wasSomethingRemoved)
+            {
+                //treba podatke iz lista ponovo unjet u txt
+            }
+        }
     }
 }
