@@ -1,4 +1,4 @@
-admin|admin|admin|true
-Pero|pero@gmail.com|pero|false
-Matija|matija@gmail.com|matija|false
-Davor|davor@gmail.com|davor|false
+admin|admin|admin|True|0
+Pero|pero@gmail.com|pero|False|1
+Davor|davor@gmail.com|aaa|False|3
+test racun|test|test|false|4
