@@ -40,6 +40,12 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (tbNazivKolegija.Text == "" || tbPredavačKolegija.Text == "")
+            {
+                MessageBox.Show("Ispunite sve vrijednosti");
+                return;
+            }
+
             String kolegij = $"{tbNazivKolegija.Text}|{tbPredavačKolegija.Text}|{++MainW.lastKolegijId}";
             File.AppendAllText(konstante.Kolegiji_Path, Environment.NewLine);
             File.AppendAllText(konstante.Kolegiji_Path, kolegij);

@@ -1,4 +1,4 @@
-KolMatematika 1|Matija|1
+Kol Matematika|Matija|1
 Autentikacijski sustavi i baze podataka|Davor|2
 Kolegij 3|admin|3
 Kolegij 4|pero|5

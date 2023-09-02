@@ -67,6 +67,12 @@ namespace PraProjekt
 
         private void btnUredi_Click(object sender, RoutedEventArgs e)
         {
+            if (tbNazivObavijesti.Text == "" || tbObavijest.Text == "")
+            {
+                MessageBox.Show("Ispunite sve vrijednosti");
+                return;
+            }
+
             DateTime dt = dpDatumIsteka.SelectedDate.Value;
             string noviDatum = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
