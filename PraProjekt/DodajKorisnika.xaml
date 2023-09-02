@@ -61,8 +61,8 @@
                Foreground="White" FontSize="10">
         </Label>
 
-        <Button x:Name="btnDodaj" Margin="130,0,0,0" Background="#4D4962" Content="Uredi" FontWeight="Bold" FontSize="12"
-                Foreground="White" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"
+        <Button x:Name="btnDodaj" Background="#4D4962" Content="Dodaj" FontWeight="Bold" FontSize="12"
+                Foreground="White" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
                  Click="btnDodaj_Click"  Height="35" Width="60">
             <Button.Resources>
                 <Style TargetType="Border">
