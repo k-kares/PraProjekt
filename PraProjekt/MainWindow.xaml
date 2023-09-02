@@ -44,7 +44,7 @@
                 </Button.Resources>
             </Button>
 
-            <Button x:Name="btnPredmeti" Grid.Row="1" Margin="5" Background="#4D4962" Content="Predmeti" FontWeight="Bold" Foreground="White" Height="50" Width="115" Click="BtnPredmeti_click">
+            <Button x:Name="btnPredmeti" Grid.Row="1" Margin="5" Background="#4D4962" Content="Kolegiji" FontWeight="Bold" Foreground="White" Height="50" Width="115" Click="BtnPredmeti_click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"/>
