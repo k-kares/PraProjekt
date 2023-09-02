@@ -23,7 +23,7 @@ namespace PraProjekt
     public partial class DodajKorisnika : Window
     {
         private User trenutniKorisnik = new User();
-        MainWindow MainW = new MainWindow();
+        MainWindow MainW;
         public DodajKorisnika(MainWindow mw)
         {
             MainW = mw;
