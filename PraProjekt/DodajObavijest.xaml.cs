@@ -54,12 +54,24 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (tbNazivObavijesti.Text.Contains("|") || tbObavijest.Text.Contains("|"))
+            {
+                MessageBox.Show("Nesmije bit znak '|' u tekstu");
+                return;
+            }
+
+            if (tbNazivObavijesti.Text == "" || tbObavijest.Text == "")
+            {
+                MessageBox.Show("Popunite sve vrijednosti");
+                return;
+            }
             if (dpDatumIsteka.SelectedDate == null)
             {
 
                 MessageBox.Show("Odaberi datum isteka!");
                 return;
             }
+
             //DateTime datumI = DateTime.ParseExact(dpDatumIsteka.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime datumI = dpDatumIsteka.SelectedDate.Value;
             string datumIsteka = datumI.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);

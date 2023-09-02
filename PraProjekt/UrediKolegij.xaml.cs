@@ -74,6 +74,18 @@ namespace PraProjekt
 
         private void btnUredi_Click(object sender, RoutedEventArgs e)
         {
+            if (tbNazivKolegija.Text.Contains("|") || tbPredavačKolegija.Text.Contains("|"))
+            {
+                MessageBox.Show("Nesmije bit znak '|' u tekstu");
+                return;
+            }
+
+            if (tbNazivKolegija.Text == "" ||tbPredavačKolegija.Text == "")
+            {
+                MessageBox.Show("Ispunite sve vrijednosti");
+                return;
+            }
+
             LoadKolegijiData();
             foreach (var kolegij in kolegiji)
             {
