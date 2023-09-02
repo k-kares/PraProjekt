@@ -67,14 +67,19 @@ namespace PraProjekt
 
         private void btnUredi_Click(object sender, RoutedEventArgs e)
         {
+            DateTime dt = dpDatumIsteka.SelectedDate.Value;
+            string noviDatum = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            if (dpDatumIsteka.SelectedDate.Value < DateTime.Today)
+            {
+                MessageBox.Show("Datum isteka mora biti nakon današnjeg datuma!");
+                return;
+            }
             try
             {
                 LoadObavijestiData();
                 foreach (var obavijest in obavijesti)
                 {
-                    //DateTime dt = DateTime.ParseExact(dpDatumIsteka.SelectedDate.ToString(), "dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    DateTime dt = dpDatumIsteka.SelectedDate.Value;
-                    string noviDatum = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
                     if (obavijest.ID != trenutnaObavijest.ID)
                         lines.Add($"{obavijest.ImeKolegija}|{obavijest.Title}|{obavijest.Message}|{obavijest.ImePredavaca}|{obavijest.DatumObjave}|{obavijest.DatumIsteka}|{obavijest.ID}");

@@ -18,6 +18,7 @@
         <Border BorderBrush="Gray" Background="White" BorderThickness="2px" Grid.RowSpan="3" CornerRadius="10"></Border>
 
         <Label Margin="0" Padding="10 0" Height="20" FontWeight="Bold" FontSize="16" x:Name="lblImeKolegija">lblImeKolegija</Label>
+        <Label Margin="0" Padding="10,2" Height="20" x:Name="lblDatumObjave" HorizontalAlignment="Right">lblDatumObjave</Label>
 
         <Label Margin="0" Padding="10 0" Height="20" FontWeight="Bold" FontSize="12" x:Name="lblTitle" Grid.Row="1">lblTitle</Label>
 
