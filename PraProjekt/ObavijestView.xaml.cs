@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace PraProjekt
             lblImeKolegija.Content = ovaObavijest.ImeKolegija;
             lblTitle.Content = ovaObavijest.Title;
             tbContent.Text = ovaObavijest.Message;
+            lblDatumObjave.Content = ovaObavijest.DatumObjave;
         }
 
         private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)

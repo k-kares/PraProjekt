@@ -1,5 +1,4 @@
-﻿using PraProjekt.Zadnji_tab;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,8 +33,6 @@ namespace PraProjekt
         public int lastObavijestId;
         public int lastKorisnikId;
 
-        //provjerava da li je nesto removano, ako je window.closing treba sve iz lista stavit na txt file-ove
-        public bool wasSomethingRemoved = false;
         public MainWindow()
         {
             LoginUsera();
@@ -44,7 +41,12 @@ namespace PraProjekt
             LoadObavijestiData();
             ClearSpace();
             HidebtnKorisnici();
+
+
             DrawUser();
+            lastPressedButton = btnObavijesti;
+            MakeButtonAddObavijest();
+            PutContentOnScreen(obavijesti);
         }
 
         private void LoadKolegijiData()
@@ -172,6 +174,22 @@ namespace PraProjekt
                 but.Visibility = Visibility.Hidden;
             }
         }
+        private void MakeButtonAddUser()
+        {
+            Button but = new Button()
+            {
+                Name = "AddUser",
+                Content = "Napravi novi User",
+                Height = 50,
+                FontWeight = FontWeights.Bold,
+                Foreground = new SolidColorBrush(Colors.White),
+                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
+            };
+            but.Click += But_Click;
+            StackPanelContent.Children.Add(but);
+            //adda usera
+        }
 
         private async void But_Click(object sender, RoutedEventArgs e)
         {
@@ -240,7 +258,7 @@ namespace PraProjekt
             PutContentOnScreen(korisnici);
         }
 
-        private void PutContentOnScreen(List<Obavijest> obavijesti)
+        public void PutContentOnScreen(List<Obavijest> obavijesti)
         {
             foreach (var obavijest in obavijesti)
             {
@@ -249,7 +267,7 @@ namespace PraProjekt
             }
         }
 
-        private void PutContentOnScreen(List<Kolegij> kolegiji)
+        public void PutContentOnScreen(List<Kolegij> kolegiji)
         {
             foreach (var kolegij in kolegiji)
             {
@@ -259,7 +277,7 @@ namespace PraProjekt
                 }
             }
         }
-        private void PutContentOnScreen(List<User> korisnici)
+        public void PutContentOnScreen(List<User> korisnici)
         {
             foreach (var korisnik in korisnici)
             {
@@ -285,23 +303,6 @@ namespace PraProjekt
             StackPanelContent.Children.Add(kv);
         }
 
-        private void MakeButtonAddUser()
-        {
-            Button but = new Button()
-            {
-                Name = "AddUser",
-                Content = "Napravi novi User",
-                Height = 50,
-                FontWeight = FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.White),
-                Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
-                BorderBrush = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
-            };
-            but.Click += But_Click;
-            StackPanelContent.Children.Add(but);
-            //adda usera
-        }
-
         private void ClearSpace()
         {
             StackPanelContent.Children.Clear();
@@ -318,5 +319,48 @@ namespace PraProjekt
             }
         }
 
+        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //da refresha prikazane podatke nakon zatvaranja UrediProzora
+            System.Threading.Thread.Sleep(1);
+
+            switch(lastPressedButton.Name)
+            {
+                case "btnObavijesti":
+                    {
+                        LoadObavijestiData();
+
+                        ClearSpace();
+                        MakeButtonAddObavijest();
+
+                        PutContentOnScreen(obavijesti);
+                        break;
+                    }
+                case "btnPredmeti":
+                    {
+                        LoadKolegijiData();
+
+                        ClearSpace();
+                        MakeButtonAddKolegij();
+
+                        PutContentOnScreen(kolegiji);  
+                        break;
+                    }
+                case "btnKorisnici":
+                    {
+                        LoadKorisniciData();
+
+                        ClearSpace();
+                        MakeButtonAddUser();
+
+                        PutContentOnScreen(korisnici);
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+        }
     }
 }

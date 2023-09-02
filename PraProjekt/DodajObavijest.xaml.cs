@@ -37,13 +37,13 @@ namespace PraProjekt
         private void LoadKolegij()
         {
             List<string> listaKolegija = new List<string>();
-            foreach(var kolegij in kolegiji)
+            foreach (var kolegij in kolegiji)
             {
                 if (OvajUser.IsAdmin)
                 {
                     listaKolegija.Add(kolegij.Name);
                 }
-                else if(kolegij.UsersName == OvajUser.Name)
+                else if (kolegij.UsersName == OvajUser.Name)
                 {
                     listaKolegija.Add(kolegij.Name);
                 }
@@ -54,19 +54,30 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (dpDatumIsteka.SelectedDate == null)
+            {
 
-                //DateTime datumI = DateTime.ParseExact(dpDatumIsteka.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                DateTime datumI = dpDatumIsteka.SelectedDate.Value;
-                string datumIsteka = datumI.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                MessageBox.Show("Odaberi datum isteka!");
+                return;
+            }
+            //DateTime datumI = DateTime.ParseExact(dpDatumIsteka.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime datumI = dpDatumIsteka.SelectedDate.Value;
+            string datumIsteka = datumI.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                DateTime datumO = DateTime.Today;
-                string datumObjave = datumO.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime datumO = DateTime.Today;
+            string datumObjave = datumO.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                String obavijest = $"{cbKolegij.SelectedItem.ToString()}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{MainW.OvajUser.Name}|{datumObjave}|{datumIsteka}|{++MainW.lastObavijestId}";
-                File.AppendAllText(konstante.Obavijesti_Path, Environment.NewLine);
-                File.AppendAllText(konstante.Obavijesti_Path, obavijest);
+            if (dpDatumIsteka.SelectedDate.Value < DateTime.Today)
+            {
+                MessageBox.Show("Datum isteka mora biti nakon današnjeg datuma!");
+                return;
+            }
 
-           
+            String obavijest = $"{cbKolegij.SelectedItem.ToString()}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{MainW.OvajUser.Name}|{datumObjave}|{datumIsteka}|{++MainW.lastObavijestId}";
+            File.AppendAllText(konstante.Obavijesti_Path, Environment.NewLine);
+            File.AppendAllText(konstante.Obavijesti_Path, obavijest);
+
+
             this.Close();
         }
 

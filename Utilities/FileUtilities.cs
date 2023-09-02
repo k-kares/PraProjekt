@@ -133,19 +133,19 @@ namespace Utilities
 
             foreach (string line in lines)
             {
-                if (string.IsNullOrEmpty(line))
-                    continue;
+                    if (string.IsNullOrEmpty(line))
+                        continue;
 
-                string[] details = line.Split(SEPARATOR);
+                    string[] details = line.Split(SEPARATOR);
 
-                User u = new User();
-                u.Name = details[0];
-                u.Email = details[1];
-                u.Password = details[2];
-                u.IsAdmin = bool.Parse(details[3]);
-                u.ID = details[4];
+                    User u = new User();
+                    u.Name = details[0];
+                    u.Email = details[1];
+                    u.Password = details[2];
+                    u.IsAdmin = bool.Parse(details[3]);
+                    u.ID = details[4];
 
-                fileData.Add(u);
+                    fileData.Add(u);
             }
 
             return fileData;
