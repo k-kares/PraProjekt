@@ -361,7 +361,6 @@ namespace PraProjekt
                         break;
                     }
             }
-            MessageBox.Show("refresh");
         }
     }
 }
