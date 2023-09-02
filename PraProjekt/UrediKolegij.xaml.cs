@@ -22,6 +22,7 @@ namespace PraProjekt
     public partial class UrediKolegij : Window
     {
         public List<Kolegij> kolegiji = new List<Kolegij>();
+        public List<Obavijest> obavijesti = new List<Obavijest>();
         public Kolegij trenutniKolegij;
         public List<string> lines = new List<string>();
         public User trenutniUser = new User();
@@ -87,20 +88,9 @@ namespace PraProjekt
             this.Close();
         }
 
-        private void LoadKolegijiData()
-        {
-            try
-            {
-                kolegiji = Utilities.FileUtilities.LoadFileDataforKolegiji(konstante.Kolegiji_Path);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Greška pri učitavanju Kolegija!");
-            }
-        }
-
         private void btnObrisi_Click(object sender, RoutedEventArgs e)
         {
+            //obrise kolegij
             LoadKolegijiData();
             foreach (var kolegij in kolegiji)
             {
@@ -110,7 +100,43 @@ namespace PraProjekt
             File.Delete(konstante.Kolegiji_Path);
             File.AppendAllLines(konstante.Kolegiji_Path, lines);
 
+
+            //obrise obavijesti kolegija koji vise ne postoji
+            lines.Clear();
+            LoadObavijestiData();
+            foreach (var obavijest in obavijesti)
+            {
+                if (obavijest.ImeKolegija != tbNazivKolegija.Text)
+                    lines.Add($"{obavijest.ImeKolegija}|{obavijest.Title}|{obavijest.Message}|{obavijest.ImePredavaca}|{obavijest.DatumObjave}|{obavijest.DatumIsteka}|{obavijest.ID}");
+            }
+            File.Delete(konstante.Obavijesti_Path);
+            File.AppendAllLines(konstante.Obavijesti_Path, lines);
+
             this.Close();
+        }
+
+        private void LoadKolegijiData()
+        {
+            try
+            {
+                kolegiji = Utilities.FileUtilities.LoadFileDataforKolegiji(konstante.Kolegiji_Path);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Greška pri učitavanju kolegija!");
+            }
+        }
+
+        private void LoadObavijestiData()
+        {
+            try
+            {
+                obavijesti = Utilities.FileUtilities.LoadFileDataforObavijest(konstante.Obavijesti_Path);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Greška pri učitavanju obavijesti!");
+            }
         }
     }
 }
