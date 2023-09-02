@@ -32,6 +32,11 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (!tbEmailKorisnika.Text.Contains("@"))
+            {
+                MessageBox.Show("Neispravna email adresa!");
+                return;
+            }
             String korisnik = $"{tbNazivKorisnika.Text}|{tbEmailKorisnika.Text}|{tbPasswordKorisnika.Text}|{cbAdminStatus.IsChecked}|{++MainW.lastKorisnikId}";
             File.AppendAllText(konstante.Korisnici_Path, Environment.NewLine);
             File.AppendAllText(konstante.Korisnici_Path, korisnik);
