@@ -179,8 +179,7 @@ namespace PraProjekt
             Button but = new Button()
             {
                 Name = "AddUser",
-                Content = "Napravi novi User",
-                Height = 50,
+                Content = "Napravi novog korisnika",
                 FontWeight = FontWeights.Bold,
                 Foreground = new SolidColorBrush(Colors.White),
                 Background = new SolidColorBrush(Color.FromRgb(77, 73, 98)),
