@@ -67,20 +67,28 @@ namespace PraProjekt
 
         private void btnUredi_Click(object sender, RoutedEventArgs e)
         {
-            LoadObavijestiData();
-            foreach (var obavijest in obavijesti)
+            try
             {
-                DateTime dt = DateTime.ParseExact(dpDatumIsteka.SelectedDate.ToString(), "dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                string noviDatum = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                LoadObavijestiData();
+                foreach (var obavijest in obavijesti)
+                {
+                    //DateTime dt = DateTime.ParseExact(dpDatumIsteka.SelectedDate.ToString(), "dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                    DateTime dt = dpDatumIsteka.SelectedDate.Value;
+                    string noviDatum = dt.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-                if (obavijest.ID != trenutnaObavijest.ID)
-                    lines.Add($"{obavijest.ImeKolegija}|{obavijest.Title}|{obavijest.Message}|{obavijest.ImePredavaca}|{obavijest.DatumObjave}|{obavijest.DatumIsteka}|{obavijest.ID}");
-                else
-                    lines.Add($"{lbKolegij.Content}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{obavijest.ImePredavaca}|{obavijest.DatumObjave}|{noviDatum}|{obavijest.ID}");
+                    if (obavijest.ID != trenutnaObavijest.ID)
+                        lines.Add($"{obavijest.ImeKolegija}|{obavijest.Title}|{obavijest.Message}|{obavijest.ImePredavaca}|{obavijest.DatumObjave}|{obavijest.DatumIsteka}|{obavijest.ID}");
+                    else
+                        lines.Add($"{lbKolegij.Content}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{obavijest.ImePredavaca}|{obavijest.DatumObjave}|{noviDatum}|{obavijest.ID}");
+                }
+                File.Delete(konstante.Obavijesti_Path);
+                File.AppendAllLines(konstante.Obavijesti_Path, lines);
+
             }
-            File.Delete(konstante.Obavijesti_Path);
-            File.AppendAllLines(konstante.Obavijesti_Path, lines);
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             this.Close();
         }
 
