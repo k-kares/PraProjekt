@@ -32,6 +32,12 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (tbNazivKorisnika.Text == "" || tbPasswordKorisnika.Text == "")
+            {
+                MessageBox.Show("Popunite sve vrijednosti");
+                return;
+            }
+
             if (!tbEmailKorisnika.Text.Contains("@"))
             {
                 MessageBox.Show("Neispravna email adresa!");
