@@ -41,6 +41,11 @@ namespace PraProjekt
 
         private void btnUredi_Click(object sender, RoutedEventArgs e)
         {
+            if (!tbEmailKorisnika.Text.Contains("@"))
+            {
+                MessageBox.Show("Neispravna email adresa!");
+                return;
+            }
             LoadKorisniciData();
             foreach (var korisnik in korisnici)
             {
@@ -88,6 +93,8 @@ namespace PraProjekt
 
             File.Delete(konstante.Korisnici_Path);
             File.AppendAllLines(konstante.Korisnici_Path, lines);
+
+            LoadKorisniciData();
 
             this.Close();
         }
