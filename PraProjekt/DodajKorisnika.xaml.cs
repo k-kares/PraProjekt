@@ -32,6 +32,12 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (tbEmailKorisnika.Text.Contains("|") || tbNazivKorisnika.Text.Contains("|") || tbPasswordKorisnika.Text.Contains("|"))
+            {
+                MessageBox.Show("Nesmije bit znaka '|' u tekstu");
+                return;
+            }
+
             if (tbNazivKorisnika.Text == "" || tbPasswordKorisnika.Text == "")
             {
                 MessageBox.Show("Popunite sve vrijednosti");

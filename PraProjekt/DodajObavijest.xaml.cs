@@ -54,6 +54,12 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (tbNazivObavijesti.Text.Contains("|") || tbObavijest.Text.Contains("|"))
+            {
+                MessageBox.Show("Nesmije bit znak '|' u tekstu");
+                return;
+            }
+
             if (tbNazivObavijesti.Text == "" || tbObavijest.Text == "")
             {
                 MessageBox.Show("Popunite sve vrijednosti");
