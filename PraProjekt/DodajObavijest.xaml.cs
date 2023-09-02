@@ -54,15 +54,19 @@ namespace PraProjekt
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
-            DateTime datumI = DateTime.ParseExact(dpDatumIsteka.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            string datumIsteka = datumI.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            DateTime datumO = DateTime.ParseExact(DateTime.Today.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            string datumObjave = datumO.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                //DateTime datumI = DateTime.ParseExact(dpDatumIsteka.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime datumI = dpDatumIsteka.SelectedDate.Value;
+                string datumIsteka = datumI.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            String obavijest = $"{cbKolegij.SelectedItem.ToString()}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{datumObjave}|{datumIsteka}|{++MainW.lastObavijestId}";
-            File.AppendAllText(konstante.Obavijesti_Path, Environment.NewLine);
-            File.AppendAllText(konstante.Obavijesti_Path, obavijest);
+                DateTime datumO = DateTime.Today;
+                string datumObjave = datumO.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+                String obavijest = $"{cbKolegij.SelectedItem.ToString()}|{tbNazivObavijesti.Text}|{tbObavijest.Text}|{MainW.OvajUser.Name}|{datumObjave}|{datumIsteka}|{++MainW.lastObavijestId}";
+                File.AppendAllText(konstante.Obavijesti_Path, Environment.NewLine);
+                File.AppendAllText(konstante.Obavijesti_Path, obavijest);
+
+           
             this.Close();
         }
 
