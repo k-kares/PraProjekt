@@ -102,7 +102,7 @@ namespace PraProjekt
             foreach (var obavijest in obavijesti)
             {
                 if (obavijest.ID != trenutnaObavijest.ID)
-                    lines.Add($"{obavijest.ImeKolegija}|{obavijest.Title}|{obavijest.Message}|{obavijest.ImePredavaca}|{obavijest.ID}");
+                    lines.Add($"{obavijest.ImeKolegija}|{obavijest.Title}|{obavijest.Message}|{obavijest.ImePredavaca}|{obavijest.DatumObjave}|{obavijest.DatumIsteka}|{obavijest.ID}");
             }
 
             File.Delete(konstante.Obavijesti_Path);
