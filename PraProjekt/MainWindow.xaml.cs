@@ -97,7 +97,7 @@ namespace PraProjekt
                 MessageBox.Show("Greška pri učitavanju korisnika!");
             }
 
-            PutContentOnScreen(obavijesti);
+            PutContentOnScreen(korisnici);
         }
 
         private void DrawUser()
